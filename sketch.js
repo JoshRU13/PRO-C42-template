@@ -8,7 +8,7 @@ var batAnimation,bat;
 var engine, world;
 
 var rand;
-
+var maxDrops = 100;
 
 
 var thunderCreatedFrame=0;
@@ -34,6 +34,11 @@ function setup(){
     umbrella = new Umbrella(200,500);
 
     //create drops
+    if(frameCount%150===0){
+    for(var i=0;i<maxDrops;i++){
+    drops.push(new createDrop(random(0,400),0))
+    }
+    }
    
     
 }
@@ -80,7 +85,10 @@ function draw(){
     umbrella.display();
 
     //display rain drops
-   
+for(var i=0;i<maxDrops;i++){
+drops[i].showDrop()
+    drops[i].updateY()
+}   
 
     drawSprites();
 }   
